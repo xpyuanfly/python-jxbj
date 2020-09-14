@@ -1,0 +1,4 @@
+vim /etc/ssh/sshd_config
+/UseDNS
+=no
+systemctl restart sshd.service

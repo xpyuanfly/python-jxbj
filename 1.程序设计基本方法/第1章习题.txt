@@ -21,9 +21,9 @@ print(area)
 
 3.
 
-3.计算n的阶层
+3.计算n的阶乘
 def fact(n):
-	if n <= 1:
+	if n <= 0:
 		return 1
 	else:
 		return n * fact(n - 1)

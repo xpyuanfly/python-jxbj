@@ -1,0 +1,9 @@
+chkconfig NetworkManager off
+ 
+chkconfig network on
+ 
+service NetworkManager stop
+ 
+service network start
+ 
+/etc/init.d/network restart

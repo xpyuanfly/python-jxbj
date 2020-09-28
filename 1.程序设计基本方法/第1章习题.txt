@@ -1,38 +1,77 @@
-（1）print
+
 提示：
 BIF 就是 Built-in Functions，内置函数。为了方便程序员快速编写脚本程序（脚本就是要编程速度快快快！！！），Python 提供了非常丰富的内置函数，我们只需要直接调用即可，例如 print() 的功能是“打印到屏幕”，input() 的作用是接收用户输入。
 
 在 Python 或 IDLE 中，输入 dir(__builtins__) 可以看到 Python 提供的内置方法列表（注意，builtins 前后是两个下划线哦）其中小写的就是 BIF。如果想具体查看某个BIF 的功能，比如 input()，可以在 shell 中输入 help(input)，就会得到这个 BIF 的功能描述。
 
+（1）print
 1.请计算5+3的结果
 2.请打印china
 3.将两个大数相乘：1234567890987654321*987654321012345678
 4.将"我们"，"热爱"，"祖国"拼接在一起。
 5.将"中国"打印10次
 
-（2）表达式
+（2）计算表达式
 1.根据半径r计算圆面积
 r=25
 pai=3.1415926
 area=pai*r*2
 print(area)
+format_str="{:.2f}"
+print(format_str.format(area))
 
-2.通过用户输入两个数字，并计算打印两个数字之和：
+（3）求平均值：
+score =  [91, 95, 97, 99, 92, 93, 96, 98]
 
-3.
+首先是如何遍历该列表对象呢？
+score[0]是第几个？
+score[5]呢？
 
-3.计算n的阶层
+如何打印全部的score(遍历）
+for i in range(8) : 
+	print(score[i])
+
+length = len(score)
+for i in range(length) :
+	print(score[i])
+
+sumvalue= 0
+for i in range(length) :
+	sumvalue += score[i]
+	
+avg = sumvalue/length
+
+使用sum函数和len函数
+avg=sum(score)/len(score)
+min 
+max的用法
+里面的参数都是放入list
+
+（4）input函数的使用
+name = input("输入姓名")
+
+
+（5）计算n的阶层
+5!=5*4*3*2*1=120
 def fact(n):
 	if n <= 1:
 		return 1
 	else:
 		return n * fact(n - 1)
 
-2.斐波那契数列 1，1，2，3，5，8，13，21，...
+（6）斐波那契数列 0，1，1，2，3，5，8，13，21，...
+a,b=0,1
+while a<1000:
+	print(a,end=',')
+	a,b=a,a+b
 
+（7）初试turtle库
+import turtle as tt
+tt.circle(15)
+tt.circle(55)
+tt.circle(100)
 
-------------------------------------
-
-
-
-2.
+（8）
+from datatime import datatime as dt
+dt.now().strftime("%x")
+dt.now().strftime("%X")

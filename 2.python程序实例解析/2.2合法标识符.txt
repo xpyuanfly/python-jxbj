@@ -1,0 +1,28 @@
+1.不能以数字开头
+>>> 2bin=2
+  File "<stdin>", line 1
+    2bin=2
+       ^
+SyntaxError: invalid syntax
+2.不能包含非法字符
+>>> ssd@f=1
+  File "<stdin>", line 1
+    ssd@f=1
+       ^
+SyntaxError: invalid syntax
+3.数字不能作为标识符
+>>> 123='wdsa'
+SyntaxError: can't assign to literal
+4.不能包含空格
+>>> fds fds=1
+  File "<stdin>", line 1
+    fds fds=1
+          ^
+SyntaxError: invalid syntax
+5.不能包含运算符
+>>> sdf+sdf=1
+SyntaxError: can't assign to operator
+6.python保留关键字不能作为标识符
+
+>>> import keyword
+>>> keyword.kwlist

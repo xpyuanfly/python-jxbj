@@ -11,7 +11,7 @@
 '''
 # input ：2个示例
 # input = 'aabcccccaaa'
-input = 'abbccd'
+input = 'abbccda'
 
 input_ls = list(input)
 
@@ -27,8 +27,8 @@ for i in range(0, len(input)):
             output_ls.append([input[i], 1])
 print(output_ls)
 ls_map_out = list(
-    map(lambda x: x[0]+(str(x[1]) if x[1] >0 else ''), output_ls))
-
+    map(lambda x: x[0]+(str(x[1]) if x[1]>=1 else ''), output_ls))
+print(ls_map_out)
 print(
     ''.join(ls_map_out) if len(ls_map_out) < len(input) else input
 )

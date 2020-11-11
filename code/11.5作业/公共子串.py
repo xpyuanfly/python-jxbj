@@ -1,5 +1,7 @@
 ''''
 字符串最长公共子串问题：获取实现两个字符串中最大的公共子串，比如str1 = "xyabcdefui"，str2 = "efdrabcdefghdef"，找到结果：公共字串"abcdef"
+str1="xya"
+str2="efd"
 '''
 '''解题思路：构建 len(str1) * len(str2)的表格
   x y a b c d e f u i
@@ -102,4 +104,5 @@ for _ in result:
     print(_)
 
 print('最大公共子串为：')
+
 print( max(result, key=len, default='') )

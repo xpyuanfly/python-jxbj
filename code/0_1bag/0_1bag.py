@@ -1,5 +1,5 @@
 import numpy as np
- 
+#5个物品，0，1，2，3，4
 weight=[2,2,6,5,4]
 value=[6,3,5,4,6]
 weight_most=10

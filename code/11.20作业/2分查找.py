@@ -26,7 +26,7 @@ if __name__ == "__main__":
     ls = [5, 3, 42, 13, 45, 67, 32, 13, 45, 67, 34, 656]
     ls = sorted(ls)  # [3,5,13,13,32,34,42,45,45,67,67,656]
     print(ls)
-    x = 42
+    x = 13
     print("search：{}".format(x))
     res = binarysearch(x,ls,0,len(ls)-1)
     print("res:ls[{}]:{}".format(res,ls[res]))

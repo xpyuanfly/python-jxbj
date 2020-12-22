@@ -44,7 +44,8 @@ def max(a, b):
     	return a   
     else:        
     	return b  
-a = 4 b = 5 
+a = 4 
+b = 5 
 print(max(a, b))
 ```
 以上实例输出结果：
@@ -95,7 +96,7 @@ def change(a):
 a=1
 print(id(a))
 change(a)
-id(a)
+print(id(a))
 ```
 以上实例输出结果为：
 
@@ -358,39 +359,40 @@ SyntaxError: non-default argument follows default argument
     ```
 
     ```
-# 可写函数说明
-   def printinfo( age=35,name):   # 默认参数不在最后，会报错
-    "打印任何传入的字符串"
-       print("名字: ", name)
-       print("年龄: ", age)
-       return
+      def printinfo( age=35,name):   # 默认参数不在最后，会报错
+        "打印任何传入的字符串"
+           print("名字: ", name)
+           print("年龄: ", age)
+           return
+    ```
+
+
 ```
    
    
    
 2. **def(\**kwargs)** 把N个关键字参数转化为字典:
+def func(country,province,**kwargs):
+	print(country,province,kwargs)
 
-     ```
->>> def func(country,province,**kwargs):
-    ...     print(country,province,kwargs)
-... 
-    >>> func("China","Sichuan",city = "Chengdu", section = "JingJiang")
+func("China","Sichuan",city = "Chengdu", section = "JingJiang")
 China Sichuan {'city': 'Chengdu', 'section': 'JingJiang'}
-    >>> 
+
+```
+
+
 ```
    
 
    
 3. lambda 匿名函数也是可以使用"**关键字参数**"进行参数传递
+g= lambda x,y : x**2+y**2
+g(2,3)
+13
+g(y=3,x=2)
+13
 
-   ```
-   >>> g= lambda x,y : x**2+y**2
-   >>> g(2,3)
-   13
-   >>> g(y=3,x=2)
-   13
-   ```
-
+```
    同样地，lambda 匿名函数也可以设定默认值
 
    ```

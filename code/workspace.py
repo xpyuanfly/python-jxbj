@@ -1,28 +1,97 @@
-# 你的班级有10个学生的成绩，你希望给出top k个成绩
-# 例如输入ls=[5,1,42,12,34,52,77,88,13,23]
-# 如果k=5，那么求出最高的5个成绩，要求不能使用sorted()函数,提示：冒泡排序法是个时间复杂度很高的算法，请尽量使用分治法的思想，实现快速排序算法。
-
-ls = [5, 1, 42, 12, 34, 52, 77, 88, 13, 23]
-def partition(ls, low, up):
-    pivot = ls[up]
-    i = low-1
-    for j in range(low, up):
-        if ls[j] > pivot:
-            i += 1
-            #[42, 34, 52, 77, 88, 23, 12, 1, 13, 5]
-            ls[i], ls[j] = ls[j], ls[i]
-    ls[i+1], ls[up] = ls[up], ls[i+1]
-    return i+1
+from flask import Flask, redirect, url_for, request
+import os
 
 
-def quicksort(ls, low, up):
-    # if len(ls) <= 1:
-    #     return ls
-    if low< up:
-        i = partition(ls, low, up)
-        quicksort(ls, low, i-1)
-        quicksort(ls, i+1, up)
+class news:
+    def __init__(self, id, title):
+        self.id = id
+        self.title = title
+
+    def setContent(self, content):
+        self.content = content
 
 
-quicksort(ls, 0, len(ls)-1)
-print(ls)
+app = Flask(__name__)
+
+# step1 : 获取全部新闻
+ls_news = []
+dir_path = 'c:\\news\\'
+ls_filename = os.listdir(dir_path)
+for filename in ls_filename:
+    id = filename[0:3]
+    title = filename[3:-4]
+    with open(dir_path+filename, 'r', encoding='utf-8') as f_obj:
+        str_content = f_obj.read()
+    new = news(id, title)
+    new.setContent(str_content)
+    ls_news.append(new)
+
+# print(ls_news)
+
+
+@app.route('/')
+def showAllNews():
+    res = '<a href="/add">添加新闻</a><br>'
+    for item in ls_news:
+        res += '{}-<a href ="/{}/show">{}</a>---<a href="/{}/del">删除</a>--<a href="/{}/edit">修改</a><br>'.format(
+            item.id, item.id, item.title, item.id, item.id)
+    return res
+
+
+@app.route('/<id>/show')
+def showOneNews(id):
+    for i in range(0, len(ls_news)):
+        if ls_news[i].id == id:
+            return ls_news[i].content.replace('\n', '<br>')
+            break
+
+
+@app.route('/<id>/del')
+def deleteOneNews(id):
+    for i in range(0, len(ls_news)):
+        if ls_news[i].id == id:
+            ls_news.pop(i)
+            break
+    return redirect(url_for("showAllNews"), code=302)
+
+
+@app.route('/<id>/edit')
+def editOneNews(id):
+    res = ''
+    for item in ls_news:
+        if item.id == id:
+            res += '<form action="/{}/update" method="POST">\
+                    标题:<input type="text" name = "title" value="{}" style="width:550px"/>\
+                    <input type="submit" value="修改" />\
+                        </form>'.format(item.id,item.title)
+            break
+    return res
+
+@app.route('/<id>/update',methods=['POST'])
+def updateOneNews(id):
+    if request.method == 'POST':
+        title = request.form.get('title')
+        for item in ls_news:
+            if item.id == id:
+                item.title = title
+                break
+    return redirect(url_for('showAllNews'),code=302)
+
+@app.route('/add')
+def addOneNews():
+    res =  '<form action="/addsubmit" method="POST">\
+                    id:<input type="text" name = "id" value="" /><br>\
+                    标题:<input type="text" name = "title" value="" style="width:550px"/><br>\
+                    正文:<textarea name = "content" value="" ></textarea><br>\
+                    <input type="submit" value="添加" />\
+            </form>'
+    return res
+
+@app.route('/addsubmit')
+def addsubmitOneNews():
+    ##
+    ##
+    
+    return redirect(url_for('showAllNews'),code=302)
+    
+app.run(debug=True)
